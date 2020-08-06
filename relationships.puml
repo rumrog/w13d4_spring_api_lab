@@ -145,7 +145,5 @@ entity "Course" as course {
 
 
 course ||--o{ booking
-booking ||--|| course
 customer ||--o{ booking
-booking ||--|| customer
 @enduml

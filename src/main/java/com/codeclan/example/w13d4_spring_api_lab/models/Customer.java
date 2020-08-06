@@ -1,12 +1,18 @@
 package com.codeclan.example.w13d4_spring_api_lab.models;
 
-import javax.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "customers")
 public class Customer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
 
@@ -19,6 +25,8 @@ public class Customer {
     @Column(name="age")
     private int age;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("customers")
     private List<Booking> bookings;
 
     public Customer(String name, String town, int age) {
