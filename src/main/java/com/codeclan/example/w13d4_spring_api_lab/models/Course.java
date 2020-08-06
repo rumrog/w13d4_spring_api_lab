@@ -1,5 +1,6 @@
 package com.codeclan.example.w13d4_spring_api_lab.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,17 +23,17 @@ public class Course {
     @Column(name = "town")
     private String town;
 
-    @Column(name = "star_rating")
-    private int starRating;
+    @Column(name = "rating")
+    private int rating;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("courses")
+    @JsonIgnoreProperties("course")
     private List<Booking> bookings;
 
-    public Course(String name, String town, int starRating) {
+    public Course(String name, String town, int rating) {
         this.name = name;
         this.town = town;
-        this.starRating = starRating;
+        this.rating = rating;
         this.bookings = new ArrayList<Booking>();
     }
 
@@ -63,11 +64,11 @@ public class Course {
     }
 
     public int getStarRating() {
-        return starRating;
+        return rating;
     }
 
     public void setStarRating(int starRating) {
-        this.starRating = starRating;
+        this.rating = starRating;
     }
 
     public List<Booking> getBookings() {

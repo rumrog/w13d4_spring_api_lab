@@ -1,5 +1,6 @@
 package com.codeclan.example.w13d4_spring_api_lab.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -25,8 +26,9 @@ public class Customer {
     @Column(name="age")
     private int age;
 
+//    @JsonBackReference
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("customers")
+    @JsonIgnoreProperties("customer")
     private List<Booking> bookings;
 
     public Customer(String name, String town, int age) {
