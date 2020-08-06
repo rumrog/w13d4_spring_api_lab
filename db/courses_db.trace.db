@@ -1326,3 +1326,28 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1061)
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1030)
 	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:949)
+2020-08-06 14:34:58 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: Reading from file nio:/Users/ollie/floobits/share/rumrog/w13d4_spring_api_lab/src/db/courses_db.mv.db failed at 28672 (length 24576), read 0, remaining 8192 [1.4.200/1]" [50000-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2877)
+	at org.h2.mvstore.MVStore.writeInBackground(MVStore.java:2813)
+	at org.h2.mvstore.MVStore$BackgroundWriterThread.run(MVStore.java:3290)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: Reading from file nio:/Users/ollie/floobits/share/rumrog/w13d4_spring_api_lab/src/db/courses_db.mv.db failed at 28672 (length 24576), read 0, remaining 8192 [1.4.200/1]" [50000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 6 more
+Caused by: java.lang.IllegalStateException: Reading from file nio:/Users/ollie/floobits/share/rumrog/w13d4_spring_api_lab/src/db/courses_db.mv.db failed at 28672 (length 24576), read 0, remaining 8192 [1.4.200/1]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:456)
+	at org.h2.mvstore.FileStore.readFully(FileStore.java:98)
+	at org.h2.mvstore.MVStore.moveChunk(MVStore.java:1915)
+	at org.h2.mvstore.MVStore.compactMoveChunks(MVStore.java:1839)
+	at org.h2.mvstore.MVStore.compactMoveChunks(MVStore.java:1772)
+	at org.h2.mvstore.MVStore.doMaintenance(MVStore.java:2848)
+	at org.h2.mvstore.MVStore.writeInBackground(MVStore.java:2788)
+	... 1 more
+Caused by: java.io.EOFException
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:444)
+	... 7 more

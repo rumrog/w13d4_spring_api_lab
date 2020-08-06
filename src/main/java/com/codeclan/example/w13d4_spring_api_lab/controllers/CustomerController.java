@@ -19,9 +19,9 @@ public class CustomerController {
 
     @GetMapping(value="/customers")
     public ResponseEntity<List<Customer>> getCustomersAndFilter(
-            @RequestParam(required = false, name = "course") Long id){
-        if (id != null) {
-            return new ResponseEntity<>(customerRepository.findByBookingsCourseId(id), HttpStatus.OK);
+            @RequestParam(required = false, name = "course") Long customerId){
+        if (customerId != null) {
+            return new ResponseEntity<>(customerRepository.findByBookingsCourseId(customerId), HttpStatus.OK);
         }
         return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
     }

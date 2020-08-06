@@ -63,12 +63,12 @@ public class Course {
         this.town = town;
     }
 
-    public int getStarRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setStarRating(int starRating) {
-        this.rating = starRating;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public List<Booking> getBookings() {
