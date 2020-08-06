@@ -1,0 +1,151 @@
+@startuml
+
+'''''''''''''
+'  Styling  '
+'''''''''''''
+
+' Colors definition ==============================================
+' Nord color palette https://www.nordtheme.com/docs/colors-and-palettes
+' Polar Night
+!$night0  = "#2E3440"
+!$night1  = "#3B4252"
+!$night2  = "#434C5E"
+!$night3  = "#4C566A"
+' Snow Storm
+!$snow0   = "#D8DEE9"
+!$snow1   = "#E5E9F0"
+!$snow2   = "#ECEFF4"
+' Frost
+!$frost0  = "#8FBCBB"
+!$frost1  = "#88C0D0"
+!$frost2  = "#81A1C1"
+!$frost3  = "#5E81AC"
+' Aurora
+!$aurora0 = "#BF616A"
+!$aurora1 = "#D08770"
+!$aurora2 = "#EBCB8B"
+!$aurora3 = "#A3BE8C"
+!$aurora4 = "#B48EAD"
+
+' Theme configuration ===========================================
+!if (%not(%variable_exists("$font")))
+!$font = "Helvetica"
+!endif
+
+' Global skinparams =========================================
+skinparam BackgroundColor $snow0
+skinparam Shadowing false
+skinparam lineType ortho
+hide empty members
+hide circle
+
+skinparam Default {
+  FontName $font
+  FontColor $night1
+}
+
+skinparam Diagram {
+  BorderColor $night3
+}
+
+skinparam Arrow {
+  Color $night3
+  FontColor $night3
+  FontStyle Italic
+}
+
+skinparam Package {
+  FontColor $aurora4
+  BackgroundColor $snow1
+  BorderColor $frost2
+}
+
+' Usecase ===============================================
+skinparam Usecase {
+  BackgroundColor $snow2
+  BorderColor $night3
+  FontColor $frost2
+}
+
+skinparam Actor {
+  BackgroundColor $aurora3
+  BorderColor $night3
+  FontColor $aurora3
+}
+
+' Class ===============================================
+skinparam CircledCharacter {
+  FontName $font
+  FontColor $night0
+  FontSize 12
+  Radius 8
+}
+
+skinparam Class {
+  BackgroundColor $snow2
+  BorderColor $night3
+  FontColor $frost3
+  FontStyle Bold
+  hide circle
+
+  Attribute {
+    FontColor $night2
+    ' IconSize 0
+  }
+}
+
+' Activity ===========================================
+skinparam Activity {
+  BackgroundColor $night2
+  FontColor $frost1
+  BorderColor $night3
+  BarColor $aurora2
+  EndColor $aurora0
+  StartColor $aurora3
+
+  Diamond {
+    BackgroundColor $aurora4
+    BorderColor $night3
+    FontColor $aurora4
+  }
+}
+
+hide circle
+hide empty members
+skinparam linetype ortho
+
+entity "Customer" as customer {
+  PK id
+  --
+  - String name
+  - String town
+  - int age
+  - List<Booking> bookings
+}
+
+entity "Booking" as booking {
+  PK id
+  --
+  - String date
+  - Customer customer
+  - Course course
+  --
+  FK customer_id
+  FK course_id
+}
+
+entity "Course" as course {
+  PK id
+  --
+  - String name
+  - String town
+  - int star rating
+  - List<Booking> bookings
+}
+
+
+course ||--o{ booking
+booking ||--|| course
+customer ||--o{ booking
+booking ||--|| customer
+@enduml
