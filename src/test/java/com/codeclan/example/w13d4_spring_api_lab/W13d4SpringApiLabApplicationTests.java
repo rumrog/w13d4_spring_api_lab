@@ -67,4 +67,10 @@ class W13d4SpringApiLabApplicationTests {
 		assertEquals(2, foundCustomers.size() );
 	}
 
+	@Test
+	public void canCustomerByCourseAndTown(){
+		List<Customer> foundCustomers = customerRepository.findByTownAndBookingsCourseId("Inverness", 1L);
+		assertEquals("Ben", foundCustomers.get(0).getName());
+	}
+
 }
